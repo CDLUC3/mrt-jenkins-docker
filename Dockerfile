@@ -39,7 +39,11 @@ RUN apt-get install -y emacs-nox && \
     apt-get install -y file
 
 # ############################################################
-# Finalization
+# Plugins
 # ############################################################
 
 USER jenkins
+
+RUN install-plugins.sh \
+    github \
+    workflow-aggregator
