@@ -12,10 +12,10 @@ cat <<EOF
 Jenkins Docker container running with container ID ${CONTAINER_ID}
 To stop the server: docker kill ${CONTAINER_ID}
 To restart after stop: docker start ${CONTAINER_ID}
-To remove the container after stop: docker container rm ${CONTAINER_ID}
+To remove the container after stop: docker rm ${CONTAINER_ID}
 To log into the container as jenkins: docker exec -u jenkins -it ${CONTAINER_ID} /bin/bash
 To log into the container as root: docker exec -u root -it ${CONTAINER_ID} /bin/bash
-Waiting for Jenkins to start...
+Waiting for Jenkins to start (should be ≲ 30 seconds)...
 EOF
 
 docker exec -it ${CONTAINER_ID} bash -c "while [ ! -f ${ADMIN_PASSWORD_PATH} ]; do echo -n '.'; sleep 1; done; echo"

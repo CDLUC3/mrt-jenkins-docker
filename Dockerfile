@@ -69,3 +69,17 @@ RUN git config -l --show-origin
 USER root
 
 RUN apt-get install -y maven
+
+# ############################################################
+# Jobs
+# ############################################################
+
+USER jenkins
+
+ENV DSL_DIR ${JENKINS_HOME}/dsl
+RUN mkdir ${DSL_DIR}
+ADD --chown=jenkins:jenkins dsl ${DSL_DIR}
+
+ENV JOBS_DIR ${JENKINS_HOME}/jobs
+ADD --chown=jenkins:jenkins jobs ${JOBS_DIR}
+
