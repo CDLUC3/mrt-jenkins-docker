@@ -9,7 +9,7 @@ JENKINS_PORT=$(docker port ${CONTAINER_ID} 8080)
 [[ -z "${JENKINS_PORT}" ]] && { echo "Unable to determine Jenkins port" ; exit 1; }
 
 cat <<EOF
-Jenkins Docker container running with \$CONTAINER_ID ${CONTAINER_ID}
+Jenkins Docker container running with container ID ${CONTAINER_ID}
 To stop the server: docker kill ${CONTAINER_ID}
 To restart after stop: docker start ${CONTAINER_ID}
 To log into the container as jenkins: docker exec -u jenkins -it ${CONTAINER_ID} /bin/bash
