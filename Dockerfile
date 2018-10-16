@@ -61,3 +61,10 @@ RUN git config --system user.email 'no-reply@builds.cdlib.org' && \
 USER jenkins
 RUN git config -l --show-origin
 
+# ############################################################
+# Build tools
+# ############################################################
+
+USER root
+
+RUN apt-get install -y maven
