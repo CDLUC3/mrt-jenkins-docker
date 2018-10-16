@@ -46,8 +46,9 @@ USER jenkins
 
 RUN install-plugins.sh \
     github \
-    workflow-aggregator \
-    job-dsl
+    job-dsl \
+    junit \
+    workflow-aggregator
 
 # ############################################################
 # git configuration
