@@ -15,16 +15,16 @@
   <builders>
     <hudson.tasks.Shell>
       <command>cp $JENKINS_HOME/dsl/*.groovy .</command>
-      <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl">
-        <targets>*.groovy</targets>
-        <usingScriptText>false</usingScriptText>
-        <ignoreExisting>false</ignoreExisting>
-        <removedJobAction>IGNORE</removedJobAction>
-        <removedViewAction>IGNORE</removedViewAction>
-        <lookupStrategy>JENKINS_ROOT</lookupStrategy>
-        <additionalClasspath/>
-      </javaposse.jobdsl.plugin.ExecuteDslScripts>
     </hudson.tasks.Shell>
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl">
+      <targets>*.groovy</targets>
+      <usingScriptText>false</usingScriptText>
+      <ignoreExisting>false</ignoreExisting>
+      <removedJobAction>IGNORE</removedJobAction>
+      <removedViewAction>IGNORE</removedViewAction>
+      <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+      <additionalClasspath/>
+    </javaposse.jobdsl.plugin.ExecuteDslScripts>
   </builders>
   <publishers/>
   <buildWrappers/>
