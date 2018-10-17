@@ -1,6 +1,8 @@
+import groovy.json.JsonSlurper
+
 def project = 'CDLUC3/mrt-core2'
 def branchApi = new URL("https://api.github.com/repos/${project}/branches")
-def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
+def branches = new JsonSlurper().parse(branchApi.newReader())
 
 branches.each { branch ->
   def branchName = branch.name
@@ -11,6 +13,9 @@ branches.each { branch ->
     }
     steps {
       maven("package")
+    }
+    publishers {
+      archiveJunit('**/target/surefire-reports/*.xml')
     }
   }
 }
