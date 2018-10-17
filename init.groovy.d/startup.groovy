@@ -1,14 +1,15 @@
-import java.util.logging.Logger
+import hudson.model.Cause.RemoteCause
+import hudson.model.CauseAction
+import hudson.model.Queue
 import jenkins.model.Jenkins
-import hudson.model.*
+
+import java.util.logging.Logger
 
 Logger.global.info("Running startup.groovy...")
 
-Jenkins.instance.save() // TODO: what does this do?
+def jenkins = Jenkins.get()
+def job = (Queue.Task) jenkins.getItem('seed')
+def action = new CauseAction(new RemoteCause("localhost", "Running startup.groovy"))
+jenkins.queue.schedule(job, 0, action)
 
-Jenkins.instance.queue.schedule(
-  Jenkins.instance.getJob('seed'),
-  0,
-  new RemoteCause("localhost", "Running startup.groovy")
-)
 Logger.global.info("...startup.groovy complete.")
