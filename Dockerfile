@@ -31,6 +31,8 @@ RUN cd /opt && \
 
 USER jenkins
 
+ENV OPENJDK_11_RELEASE_JSON 'https://raw.githubusercontent.com/AdoptOpenJDK/openjdk11-binaries/master/latest_release.json'
+
 ENV OPENJDK_URL https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11%2B28/OpenJDK11-jdk_arm_linux_hotspot_11_28.tar.gz
 
 RUN cd /tmp && \
