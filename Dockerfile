@@ -38,18 +38,19 @@ RUN cd /tmp && \
     tar -zxf openjdk.tgz -C /opt/jdk && \
     rm openjdk.tgz
 
-## ############################################################
-## Jenkins plugins
-## ############################################################
-#
-#USER jenkins
-#
-#RUN install-plugins.sh \
-#    github \
-#    job-dsl \
-#    junit \
-#    workflow-aggregator
-#
+# ############################################################
+# Jenkins plugins
+# ############################################################
+
+USER jenkins
+
+RUN install-plugins.sh \
+    configuration-as-code \
+    github \
+    job-dsl \
+    junit \
+    workflow-aggregator
+
 ## ############################################################
 ## git configuration
 ## ############################################################
