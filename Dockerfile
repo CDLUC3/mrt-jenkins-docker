@@ -70,24 +70,3 @@ RUN install-plugins.sh \
 #USER root
 #
 #RUN apt-get install -y maven
-#
-## ############################################################
-## Jobs
-## ############################################################
-#
-## Cf. https://github.com/binario200/jenkins-job-dsl
-## TODO: should these use COPY instead of ADD?
-#
-#USER jenkins
-#
-#ENV DSL_DIR ${JENKINS_HOME}/dsl
-#RUN mkdir -p ${DSL_DIR}
-#ADD --chown=jenkins:jenkins dsl ${DSL_DIR}
-#
-#ENV JOBS_DIR ${JENKINS_HOME}/jobs
-#RUN mkdir -p ${JOBS_DIR}
-#ADD --chown=jenkins:jenkins jobs ${JOBS_DIR}
-#
-#ENV INIT_DIR ${JENKINS_HOME}/init.groovy.d
-#RUN mkdir -p ${INIT_DIR}
-#ADD --chown=jenkins:jenkins init.groovy.d ${INIT_DIR}
