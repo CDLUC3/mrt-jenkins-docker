@@ -5,4 +5,4 @@
 
 PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd ${PROJECT_ROOT}
-docker build -t mrt-jenkins-docker .
+docker build --build-arg OPENJDK_URL=$(bin/get-openjdk-url.py) -t mrt-jenkins-docker .
