@@ -16,6 +16,7 @@ To restart after stop: docker start ${CONTAINER_ID}
 To remove the container after stop: docker rm ${CONTAINER_ID}
 To log into the container as jenkins: docker exec -u jenkins -it ${CONTAINER_ID} /bin/bash
 To log into the container as root: docker exec -u root -it ${CONTAINER_ID} /bin/bash
+To see output from the Jenkins startup command: docker logs ${CONTAINER_ID}
 Waiting for Jenkins to start (should be ≈ 10 seconds)...
 EOF
 

@@ -36,7 +36,8 @@ USER jenkins
 RUN cd /tmp && \
     curl -L -o openjdk.tgz ${OPENJDK_URL} && \
     tar -zxf openjdk.tgz -C /opt/jdk && \
-    rm openjdk.tgz
+    rm openjdk.tgz && \
+    ln -s $(ls -d /opt/jdk/*) /opt/jdk/jdk-11
 
 # ############################################################
 # Jenkins plugins
@@ -50,6 +51,12 @@ RUN install-plugins.sh \
     job-dsl \
     junit \
     workflow-aggregator
+
+# ############################################################
+# Jenkins configuration
+# ############################################################
+
+COPY casc_configs/jenkins.yaml /var/jenkins_home/
 
 ## ############################################################
 ## git configuration

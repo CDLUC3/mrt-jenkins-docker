@@ -1,0 +1,18 @@
+jenkins:
+  systemMessage: |
+    Jenkins Docker image built from https://github.com/dmolesUC3/mrt-jenkins-docker
+  numExecutors: 2
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+
+tool:
+  git:
+    installations:
+      - name: git
+        home: /usr/bin/git
+  jdk:
+    installations:
+      - name: jdk8
+        home: /usr/lib/jvm/java-8-openjdk-amd64/
+      - name: jdk11
+        home: /opt/jdk/jdk-11
