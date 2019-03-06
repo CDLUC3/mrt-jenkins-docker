@@ -46,20 +46,33 @@ RUN cd /tmp && \
 USER jenkins
 
 RUN install-plugins.sh \
+    ansicolor \
     configuration-as-code \
-    configuration-as-code-support
+    configuration-as-code-support \
+    git \
+    github \
+    maven-plugin \
+    pipeline-maven
 
 # ############################################################
-# Skip Jenkins config wizard
+# Build tools
 # ############################################################
 
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+USER root
+
+RUN apt-get install -y maven
 
 # ############################################################
 # Jenkins configuration
 # ############################################################
 
 COPY casc_configs/jenkins.yaml /var/jenkins_home/
+
+# ############################################################
+# Skip Jenkins config wizard
+# ############################################################
+
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 ## ############################################################
 ## git configuration
@@ -73,10 +86,4 @@ COPY casc_configs/jenkins.yaml /var/jenkins_home/
 #USER jenkins
 #RUN git config -l --show-origin
 #
-## ############################################################
-## Build tools
-## ############################################################
-#
-#USER root
-#
-#RUN apt-get install -y maven
+

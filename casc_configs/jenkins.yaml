@@ -1,8 +1,13 @@
 plugins:
   # TODO: use latest versions? See https://github.com/jenkinsci/configuration-as-code-plugin/issues/605
   required:
+    ansicolor: 0.6.2
     configuration-as-code: 1.7
     configuration-as-code-support: 1.7
+    git: 3.9.3
+    github: 1.29.4
+    maven-plugin: 3.2
+    pipeline-maven: 3.6.7
 
 jenkins:
   authorizationStrategy: unsecured
@@ -30,3 +35,7 @@ tool:
         home: /usr/lib/jvm/java-8-openjdk-amd64/
       - name: jdk11
         home: /opt/jdk/jdk-11
+  maven:
+    installations:
+      - name: maven
+        home: /usr/share/maven
