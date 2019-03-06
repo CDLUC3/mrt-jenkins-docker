@@ -1,9 +1,17 @@
+plugins:
+  # TODO: use latest version? See https://github.com/jenkinsci/configuration-as-code-plugin/issues/605
+  required:
+    blueocean: 1.13.1
+    configuration-as-code: 1.7
+    configuration-as-code-support: 1.7
+
 jenkins:
   systemMessage: |
     Jenkins Docker image built from https://github.com/dmolesUC3/mrt-jenkins-docker
+  mode: NORMAL
   numExecutors: 2
   scmCheckoutRetryCount: 2
-  mode: NORMAL
+  authorizationStrategy: unsecured
 
 tool:
   git:

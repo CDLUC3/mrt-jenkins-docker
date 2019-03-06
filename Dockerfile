@@ -47,10 +47,14 @@ USER jenkins
 
 RUN install-plugins.sh \
     configuration-as-code \
-    github \
-    job-dsl \
-    junit \
-    workflow-aggregator
+    configuration-as-code-support \
+    blueocean
+
+# ############################################################
+# Skip Jenkins config wizard
+# ############################################################
+
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 # ############################################################
 # Jenkins configuration
