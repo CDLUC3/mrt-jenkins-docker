@@ -47,8 +47,7 @@ USER jenkins
 
 RUN install-plugins.sh \
     configuration-as-code \
-    configuration-as-code-support \
-    blueocean
+    configuration-as-code-support
 
 # ############################################################
 # Skip Jenkins config wizard
