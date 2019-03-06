@@ -6,12 +6,19 @@ plugins:
     configuration-as-code-support: 1.7
 
 jenkins:
-  systemMessage: |
-    Jenkins Docker image built from https://github.com/dmolesUC3/mrt-jenkins-docker
+  authorizationStrategy: unsecured
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
   mode: NORMAL
   numExecutors: 2
   scmCheckoutRetryCount: 2
-  authorizationStrategy: unsecured
+  systemMessage: |
+    Jenkins Docker image built from https://github.com/dmolesUC3/mrt-jenkins-docker
+
+security:
+  remotingCLI:
+    enabled: false
 
 tool:
   git:
