@@ -20,10 +20,11 @@ RUN apt-get install -y emacs-nox && \
     apt-get install -y file
 
 # ############################################################
-# OpenJDK 11  (system JDK is OpenJDK 8)
+# Latest OpenJDK 8 & 11  (system JDK is older OpenJDK 8)
 # ############################################################
 
-ARG OPENJDK_URL
+ARG OPENJDK8_URL
+ARG OPENJDK11_URL
 
 USER root
 
@@ -34,10 +35,16 @@ RUN cd /opt && \
 USER jenkins
 
 RUN cd /tmp && \
-    curl -L -o openjdk.tgz ${OPENJDK_URL} && \
-    tar -zxf openjdk.tgz -C /opt/jdk && \
-    rm openjdk.tgz && \
-    ln -s $(ls -d /opt/jdk/*) /opt/jdk/jdk-11
+    curl -L -o openjdk8.tgz ${OPENJDK8_URL} && \
+    tar -zxf openjdk8.tgz -C /opt/jdk && \
+    rm openjdk8.tgz && \
+    ln -s $(ls -d /opt/jdk/*8*) /opt/jdk/jdk8
+
+RUN cd /tmp && \
+    curl -L -o openjdk11.tgz ${OPENJDK11_URL} && \
+    tar -zxf openjdk11.tgz -C /opt/jdk && \
+    rm openjdk11.tgz && \
+    ln -s $(ls -d /opt/jdk/*11*) /opt/jdk/jdk11
 
 # ############################################################
 # Jenkins plugins
@@ -52,7 +59,8 @@ RUN install-plugins.sh \
     git \
     github \
     maven-plugin \
-    pipeline-maven
+    pipeline-maven \
+    workflow-aggregator
 
 # ############################################################
 # Build tools

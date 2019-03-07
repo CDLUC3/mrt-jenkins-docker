@@ -8,6 +8,7 @@ plugins:
     github: 1.29.4
     maven-plugin: 3.2
     pipeline-maven: 3.6.7
+    workflow-aggregator: 2.6
 
 jenkins:
   authorizationStrategy: unsecured
@@ -32,9 +33,9 @@ tool:
   jdk:
     installations:
       - name: jdk8
-        home: /usr/lib/jvm/java-8-openjdk-amd64/
+        home: /opt/jdk/jdk8
       - name: jdk11
-        home: /opt/jdk/jdk-11
+        home: /opt/jdk/jdk11
   maven:
     installations:
       - name: maven
