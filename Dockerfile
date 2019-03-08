@@ -95,3 +95,8 @@ ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 #RUN git config -l --show-origin
 #
 
+# ############################################################
+# Run Jenkins as Jenkins user
+# ############################################################
+
+USER jenkins
