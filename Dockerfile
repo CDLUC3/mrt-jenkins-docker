@@ -60,6 +60,7 @@ RUN install-plugins.sh \
     configuration-as-code-support \
     git \
     github \
+    job-dsl \
     maven-plugin \
     pipeline-maven \
     workflow-aggregator

@@ -28,3 +28,19 @@ tool:
     installations:
       - name: maven
         home: /usr/share/maven
+
+jobs:
+  - script: >
+      pipelineJob('mrt-core2') {
+        definition {
+          cpsScm {
+            scm {
+              git('http://github.com/dmolesUC3/mrt-core2.git')
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+        triggers {
+          scm('H/5 * * * *')
+        }
+      }
