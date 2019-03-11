@@ -52,6 +52,8 @@ RUN cd /tmp && \
 
 USER jenkins
 
+# NOTE: plugin support in JCasC is deprecated; we should use this even outside of Docker, see
+# https://github.com/jenkinsci/configuration-as-code-plugin/pull/766#issuecomment-469756749
 RUN install-plugins.sh \
     ansicolor \
     configuration-as-code \
