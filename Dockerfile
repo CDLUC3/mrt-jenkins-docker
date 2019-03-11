@@ -88,15 +88,15 @@ ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 ## ############################################################
 ## git configuration
 ## ############################################################
-#
-## TODO: figure out why 'USER jenkins' + 'git config --global' doesn't work
-#USER root
-#RUN git config --system user.email 'no-reply@builds.cdlib.org' && \
-#    git config --system user.name 'Jenkins (Docker)'
-#
-#USER jenkins
-#RUN git config -l --show-origin
-#
+
+# TODO: figure out why 'USER jenkins' + 'git config --global' doesn't work
+USER root
+RUN git config --system user.email 'no-reply@builds.cdlib.org' && \
+    git config --system user.name 'Jenkins (Docker)'
+
+USER jenkins
+RUN git config -l --show-origin
+
 
 # ############################################################
 # Run Jenkins as Jenkins user
