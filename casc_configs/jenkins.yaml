@@ -35,7 +35,12 @@ jobs:
         definition {
           cpsScm {
             scm {
-              git('http://github.com/dmolesUC3/mrt-core2.git')
+              git {
+                remote {
+                  url('http://github.com/dmolesUC3/mrt-core2.git')
+                }
+                branch('*/master')
+              }
             }
             scriptPath('Jenkinsfile')
           }
