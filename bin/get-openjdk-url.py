@@ -4,7 +4,9 @@
 # get-openjdk-url.py
 #
 # Gets the URL for the latest OpenJDK release from
-# https://github.com/AdoptOpenJDK/openjdk-11-binaries
+# - https://github.com/AdoptOpenJDK/openjdk8-binaries/releases
+# - https://github.com/AdoptOpenJDK/openjdk11-binaries/releases
+# (etc.)
 ############################################################
 
 import json
