@@ -20,7 +20,7 @@ Jenkins Docker container running with container ID ${CONTAINER_ID}
 - To log into the container as root:    docker exec -u root -it ${CONTAINER_ID} /bin/bash
 - To see output from Jenkins startup:   docker logs ${CONTAINER_ID}
 
-Waiting for Jenkins to start (should be ≈ 10 seconds)...
+Waiting for Jenkins to start (should be ≈ 15 seconds)...
 EOF
 
 STARTUP_DETECTION_PATH="/var/jenkins_home/logs"
