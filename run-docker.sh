@@ -23,8 +23,7 @@ Jenkins Docker container running with container ID ${CONTAINER_ID}
 Waiting for Jenkins to start (should be ≈ 15 seconds)...
 EOF
 
-STARTUP_DETECTION_PATH="/var/jenkins_home/logs"
-docker exec -it ${CONTAINER_ID} bash -c "while [ ! -d ${STARTUP_DETECTION_PATH} ]; do echo -n '.'; sleep 1; done; echo"
+bin/wait_for_jenkins_to_start.py ${CONTAINER_ID}
 
 cat <<EOF
 Jenkins running at http://${JENKINS_PORT}
