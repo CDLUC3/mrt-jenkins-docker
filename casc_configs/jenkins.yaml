@@ -31,7 +31,32 @@ tool:
 
 jobs:
   - script: >
-      pipelineJob('mrt-core2') {
+      pipelineJob('mrt-core2-jdk8') {
+        parameters {
+          stringParam('JDK', 'jdk8')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('http://github.com/dmolesUC3/mrt-core2.git')
+                }
+                branch('*/master')
+              }
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+        triggers {
+          scm('H/5 * * * *')
+        }
+      }
+  - script: >
+      pipelineJob('mrt-core2-jdk11') {
+        parameters {
+          stringParam('JDK', 'jdk11')
+        }
         definition {
           cpsScm {
             scm {
