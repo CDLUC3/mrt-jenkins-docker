@@ -3,7 +3,7 @@ LC_CTYPE=en_US.utf8 # just to be sure
 
 ADMIN_PASSWORD_PATH="/var/jenkins_home/secrets/initialAdminPassword"
 
-CONTAINER_ID=$(set -e; docker run -P -d mrt-jenkins-docker | cut -c 1-12)
+CONTAINER_ID=$(set -e; docker run -v jenkins_home:/var/jenkins_home -P -d mrt-jenkins-docker  | cut -c 1-12)
 [[ -z "${CONTAINER_ID}" ]] && { echo "Unable to start container" ; exit 1; }
 
 JENKINS_PORT=$(docker port ${CONTAINER_ID} 8080)
