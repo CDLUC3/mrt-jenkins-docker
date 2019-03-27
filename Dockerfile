@@ -20,6 +20,51 @@ RUN apt-get install -y emacs-nox && \
     apt-get install -y file
 
 # ############################################################
+# Build tools
+# ############################################################
+
+USER root
+
+RUN apt-get install -y maven
+
+## ############################################################
+## git configuration
+## ############################################################
+
+# TODO: figure out why 'USER jenkins' + 'git config --global' doesn't work
+USER root
+RUN git config --system user.email 'no-reply@builds.cdlib.org' && \
+    git config --system user.name 'Jenkins (Docker)'
+
+USER jenkins
+RUN git config -l --show-origin
+
+# ############################################################
+# Skip Jenkins config wizard
+# ############################################################
+
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
+# ############################################################
+# Jenkins plugins
+# ############################################################
+
+USER jenkins
+
+# NOTE: plugin support in JCasC is deprecated; we should use this even outside of Docker, see
+# https://github.com/jenkinsci/configuration-as-code-plugin/pull/766#issuecomment-469756749
+RUN install-plugins.sh \
+    ansicolor \
+    configuration-as-code \
+    configuration-as-code-support \
+    git \
+    github \
+    job-dsl \
+    maven-plugin \
+    pipeline-maven \
+    workflow-aggregator
+
+# ############################################################
 # Latest OpenJDK 8 & 11  (system JDK is older OpenJDK 8)
 # ############################################################
 
@@ -47,59 +92,13 @@ RUN cd /tmp && \
     ln -s $(ls -d /opt/jdk/*11*) /opt/jdk/jdk11
 
 # ############################################################
-# Jenkins plugins
-# ############################################################
-
-USER jenkins
-
-# NOTE: plugin support in JCasC is deprecated; we should use this even outside of Docker, see
-# https://github.com/jenkinsci/configuration-as-code-plugin/pull/766#issuecomment-469756749
-RUN install-plugins.sh \
-    ansicolor \
-    configuration-as-code \
-    configuration-as-code-support \
-    git \
-    github \
-    job-dsl \
-    maven-plugin \
-    pipeline-maven \
-    workflow-aggregator
-
-# ############################################################
-# Build tools
-# ############################################################
-
-USER root
-
-RUN apt-get install -y maven
-
-# ############################################################
 # Jenkins configuration
 # ############################################################
 
 COPY casc_configs/jenkins.yaml /var/jenkins_home/
 
 # ############################################################
-# Skip Jenkins config wizard
-# ############################################################
-
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
-
-## ############################################################
-## git configuration
-## ############################################################
-
-# TODO: figure out why 'USER jenkins' + 'git config --global' doesn't work
-USER root
-RUN git config --system user.email 'no-reply@builds.cdlib.org' && \
-    git config --system user.name 'Jenkins (Docker)'
-
-USER jenkins
-RUN git config -l --show-origin
-
-
-# ############################################################
-# Run Jenkins as Jenkins user
+# Make sure to launch Jenkins as jenkins user
 # ############################################################
 
 USER jenkins
