@@ -6,7 +6,7 @@ ADMIN_PASSWORD_PATH="/var/jenkins_home/secrets/initialAdminPassword"
 # TODO: figure out how to preserve jenkins_home *but* get updated jenkins.yaml
 #   - see https://github.com/jenkinsci/docker/issues/813
 
-CONTAINER_ID=$(set -e; docker run -v jenkins_home:/var/jenkins_home -P -d mrt-jenkins-docker  | cut -c 1-12)
+CONTAINER_ID=$(set -e; docker run -v jenkins_home_jobs:/var/jenkins_home/jobs -P -d mrt-jenkins-docker  | cut -c 1-12)
 [[ -z "${CONTAINER_ID}" ]] && { echo "Unable to start container" ; exit 1; }
 
 JENKINS_PORT=$(docker port ${CONTAINER_ID} 8080)

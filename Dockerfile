@@ -98,6 +98,13 @@ RUN cd /tmp && \
 COPY casc_configs/jenkins.yaml /var/jenkins_home/
 
 # ############################################################
+# Try to make sure /var/jenkins_home has right owner/permissions
+# ############################################################
+
+USER root
+RUN chown -R jenkins:jenkins /var/jenkins_home
+
+# ############################################################
 # Make sure to launch Jenkins as jenkins user
 # ############################################################
 
