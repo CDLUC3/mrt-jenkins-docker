@@ -98,14 +98,12 @@ RUN cd /tmp && \
 COPY casc_configs/jenkins.yaml /var/jenkins_home/
 
 # ############################################################
-# Try to make sure /var/jenkins_home has right owner/permissions
+# Hack permissions on mounted volume before launching Jenkins
 # ############################################################
 
+# TODO: something less awful
+#   - see https://github.com/jenkinsci/docker/issues/813#issuecomment-477739766
 USER root
-RUN chown -R jenkins:jenkins /var/jenkins_home
-
-# ############################################################
-# Make sure to launch Jenkins as jenkins user
-# ############################################################
-
-USER jenkins
+RUN apt-get install -y sudo
+COPY scripts/fix-perms-and-start-jenkins.sh /usr/local/bin/
+ENTRYPOINT ["/sbin/tini", "-vvv", "--", "/usr/local/bin/fix-perms-and-start-jenkins.sh"]
