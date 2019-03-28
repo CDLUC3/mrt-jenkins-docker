@@ -2,7 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Python" name="Python">
-      <configuration sdkName="Python 2.7" />
+      <configuration sdkName="" />
     </facet>
   </component>
   <component name="Go" enabled="true" />
@@ -18,6 +18,5 @@
     <orderEntry type="library" name="groovy-2.5.2" level="application" />
     <orderEntry type="library" name="org.jenkins-ci.plugins:job-dsl:1.70" level="application" />
     <orderEntry type="library" name="org.jenkins-ci.main:jenkins-core:2.144" level="application" />
-    <orderEntry type="library" name="Python 2.7 interpreter library" level="application" />
   </component>
 </module>
