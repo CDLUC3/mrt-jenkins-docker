@@ -3,8 +3,6 @@ LC_CTYPE=en_US.utf8 # just to be sure
 
 ADMIN_PASSWORD_PATH="/var/jenkins_home/secrets/initialAdminPassword"
 
-# TODO: figure out why /var/jenkins_home has wrong permissions
-#       see https://github.com/jenkinsci/docker/issues/813#issuecomment-477382374
 CONTAINER_ID=$(set -e; docker run -v jenkins_home_jobs:/var/jenkins_home/jobs -P -d mrt-jenkins-docker  | cut -c 1-12)
 [[ -z "${CONTAINER_ID}" ]] && { echo "Unable to start container" ; exit 1; }
 
@@ -25,9 +23,5 @@ Jenkins Docker container running with container ID ${CONTAINER_ID}
 Waiting for Jenkins to start (should be ≈ 15 seconds)...
 EOF
 
-bin/wait_for_jenkins_to_start.py ${CONTAINER_ID}
-
-cat <<EOF
-Jenkins running at http://${JENKINS_PORT}
-EOF
+bin/wait_for_jenkins_to_start.py ${CONTAINER_ID} ${JENKINS_PORT}
 

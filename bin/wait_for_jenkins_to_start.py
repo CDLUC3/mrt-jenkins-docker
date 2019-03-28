@@ -26,10 +26,15 @@ def wait_till_started(container_id):
 
 
 def main():
-    if len(sys.argv) != 2:
-        sys.exit("expected 1 argument, got %d" % (len(sys.argv) - 1))
+    if len(sys.argv) != 3:
+        sys.exit("expected 2 arguments, got %d" % (len(sys.argv) - 1))
     container_id = sys.argv[1]
-    wait_till_started(container_id)
-
+    jenkins_port = sys.argv[2]
+    try:
+        wait_till_started(container_id)
+        print "Jenkins running at http://%s" % jenkins_port
+    except:
+        print sys.exc_info()[0]
+        sys.exit(1)
 
 main()

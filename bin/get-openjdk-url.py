@@ -91,6 +91,8 @@ def main():
         start_page_url = START_PAGE_URL_FMT % int(version_arg)
         latest_release_url = get_release_url(start_page_url, ARCH_X64_LINUX, JVM_HOTSPOT)
         print(latest_release_url)
+    except urllib2.HTTPError as e:
+        sys.exit("HTTPError: %s" % e)
     except ValueError:
         sys.exit("expected numeric Java major version (e.g. 8, 11), got %s" % version_arg)
 
