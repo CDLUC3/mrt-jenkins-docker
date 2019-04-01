@@ -61,6 +61,7 @@ RUN install-plugins.sh \
     github \
     job-dsl \
     maven-plugin \
+    nexus-jenkins-plugin \
     pipeline-maven \
     workflow-aggregator
 
