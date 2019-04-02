@@ -1,7 +1,17 @@
 #!/bin/bash
 LC_CTYPE=en_US.utf8 # just to be sure
 
-CONTAINER_ID=$(set -e; docker run -v jenkins_home_jobs:/var/jenkins_home/jobs -P -d mrt-jenkins-docker  | cut -c 1-12)
+: "${NEXUS_PASSWORD:?'$'NEXUS_PASSWORD (password for mvn.cdlib.org) not set}"
+
+CONTAINER_ID=$(
+    set -e; \
+    docker run \
+        -P \
+        -e "NEXUS_PASSWORD=${NEXUS_PASSWORD}" \
+        -v jenkins_home_jobs:/var/jenkins_home/jobs \
+        -d mrt-jenkins-docker \
+     | cut -c 1-12
+)
 [[ -z "${CONTAINER_ID}" ]] && { echo "Unable to start container" ; exit 1; }
 
 JENKINS_PORT=$(docker port ${CONTAINER_ID} 8080)

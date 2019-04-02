@@ -29,6 +29,32 @@ tool:
       - name: maven
         home: /usr/share/maven
 
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              description: "mvn.cdlib.org"
+              id: "mvn.cdlib.org"
+              password: ${NEXUS_PASSWORD}
+              scope: GLOBAL
+              username: "deployment"
+
+unclassified:
+  gitSCM:
+    createAccountBasedOnEmail: false
+    globalConfigEmail: "no-reply@builds.cdlib.org"
+    globalConfigName: "Jenkins (Docker)"
+  globalNexusConfiguration:
+    instanceId: "mvn.cdlib.org"
+    nxrmConfigs:
+      - nxrm2Configuration:
+          credentialsId: "mvn.cdlib.org"
+          displayName: "mvn.cdlib.org"
+          id: "mvn.cdlib.org"
+          internalId: "mvn.cdlib.org"
+          serverUrl: "http://mvn.cdlib.org/"
+
 jobs:
   - script: >
       pipelineJob('mrt-core2-jdk8') {

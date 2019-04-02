@@ -27,17 +27,8 @@ USER root
 
 RUN apt-get install -y maven
 
-## ############################################################
-## git configuration
-## ############################################################
-
-# TODO: figure out why 'USER jenkins' + 'git config --global' doesn't work
-USER root
-RUN git config --system user.email 'no-reply@builds.cdlib.org' && \
-    git config --system user.name 'Jenkins (Docker)'
-
-USER jenkins
-RUN git config -l --show-origin
+# Needed for fix-perms-and-start-jenkins.sh (see below)
+RUN apt-get install -y sudo
 
 # ############################################################
 # Skip Jenkins config wizard
@@ -105,6 +96,5 @@ COPY casc_configs/jenkins.yaml /var/jenkins_home/
 # TODO: something less awful
 #   - see https://github.com/jenkinsci/docker/issues/813#issuecomment-477739766
 USER root
-RUN apt-get install -y sudo
 COPY scripts/fix-perms-and-start-jenkins.sh /usr/local/bin/
 ENTRYPOINT ["/sbin/tini", "-vvv", "--", "/usr/local/bin/fix-perms-and-start-jenkins.sh"]

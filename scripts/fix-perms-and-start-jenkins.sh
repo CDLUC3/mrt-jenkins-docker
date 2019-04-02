@@ -6,6 +6,7 @@
 
 chown -R jenkins:jenkins ${JENKINS_HOME} && \
   sudo --login -u jenkins \
+    NEXUS_PASSWORD=${NEXUS_PASSWORD} \
     JENKINS_HOME=${JENKINS_HOME} \
     JENKINS_WAR=${JENKINS_WAR} \
     COPY_REFERENCE_FILE_LOG=${COPY_REFERENCE_FILE_LOG} \
