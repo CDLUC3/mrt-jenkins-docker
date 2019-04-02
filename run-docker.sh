@@ -1,8 +1,6 @@
 #!/bin/bash
 LC_CTYPE=en_US.utf8 # just to be sure
 
-ADMIN_PASSWORD_PATH="/var/jenkins_home/secrets/initialAdminPassword"
-
 CONTAINER_ID=$(set -e; docker run -v jenkins_home_jobs:/var/jenkins_home/jobs -P -d mrt-jenkins-docker  | cut -c 1-12)
 [[ -z "${CONTAINER_ID}" ]] && { echo "Unable to start container" ; exit 1; }
 
