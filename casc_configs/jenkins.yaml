@@ -66,9 +66,9 @@ jobs:
             scm {
               git {
                 remote {
-                  url('http://github.com/dmolesUC3/mrt-core2.git')
+                  url('http://github.com/CDLUC3/mrt-core2.git')
                 }
-                branch('*/master')
+                branch('*/mrt-release-plugin')
               }
             }
             scriptPath('Jenkinsfile')
@@ -88,9 +88,9 @@ jobs:
             scm {
               git {
                 remote {
-                  url('http://github.com/dmolesUC3/mrt-core2.git')
+                  url('http://github.com/CDLUC3/mrt-core2.git')
                 }
-                branch('*/master')
+                branch('*/mrt-release-plugin')
               }
             }
             scriptPath('Jenkinsfile')
